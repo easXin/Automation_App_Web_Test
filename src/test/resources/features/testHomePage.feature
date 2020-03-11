@@ -1,28 +1,29 @@
-@test
-Feature: I want to see what this website has
-
-Scenario: I am on the theautomatedtester website
-	Given I see 5 hyperlinks on this page
-	And  one text editing field
-	When I am opened any of these 5 hyperlinks
-	Then I should be taken to the disparate page
-	When I am on the subsite
-	Then I will be redirected back to previous page  
-
-Scenario: Subsite redirects me back to the home page
-	Given I notice the text on page is same as the website title
-	And one text editing field
-	When I am clicked on the texting editing field 
-	Then I can input some text
-
-Scenario: Check if hyperlink is active
-	Given I see 5 hyperlinks on this page
-	When I am opened any of these 5 hyperlinks
-	Then I should be taken to disparate page
-	But when I am going back the home page
-	Then the color of the hyperline should be changed to indicate the link is visited
+@test 
+Feature: To test functionality of the main site 
+Scenario: Check hyperlink is validated 
+	Given I see five hyperlinks on the site 
+	When I click on any one of them 
+	Then I should be on that hyperlink page 
 	
-Scenario: Check if text is selectable
+Scenario: Validate the state of hyperline after visited 
+	Given I see five hyperlinks on the site 
+	When I visited all the links on the site 
+	Then I shold be taken back to the main site 
+	And the color of visited hyperlink should be changed 
+	
+Scenario: Validate the title of the website 
+	Given I see five hyperlinks on the site 
+	When I visited all the links on the site 
+	Then I shold be taken back to the main site 
+	Then the website name should never changed 
+	
+Scenario: All the visible text is selectable on the site
 	When I select all the visible text on the webesite
 	Then the text is selectable
+	
+Scenario: Input text on the text editing field
+	Given there is a text editing field on the page
+	When I click on it
+    Then I can input some text
+
 
