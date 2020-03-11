@@ -1,9 +1,11 @@
 package pageobject;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
-class Ch2Page{
+public class Ch2Page{
 	@FindBy(xpath="//a[contains(text(),'Index')]")
 	WebElement goBackToHomePage;
 	
@@ -28,6 +30,16 @@ class Ch2Page{
 	@FindBy(xpath="//div[6]")
 	WebElement checkMyId;
 	
+	@FindBy(xpath = "//title[contains(text(),'Selenium: Beginners Guide')]")
+	WebElement websiteTitle;
+	
+	WebDriver driver;
+	public Ch2Page(WebDriver driver) {
+		PageFactory.initElements(driver,this);
+	}
+	public String getTitle() {
+		return websiteTitle.getText();
+	}
 	public void clickOnIndex() {
 		goBackToHomePage.click();
 	}
@@ -54,6 +66,10 @@ class Ch2Page{
 	
 	public void clickOnBtnChocolate() {
 		btn_chocolateDoesNothing.click();
+	}
+	
+	public static String getPageName() {
+		return "Ch2 Page";
 	}
 	
 	public void checkDiv6ID() {

@@ -4,9 +4,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
-class Ch4Page{
+public class Ch4Page{
 	WebDriver webDriver = null;
 	@FindBy(xpath="//a[@id='index']")
 	WebElement goBackToPreviousPage;
@@ -32,9 +33,11 @@ class Ch4Page{
 	@FindBy(xpath="//div[@id='hoverOver']")
 	WebElement hoverArena;
 	
-	public Ch4Page() {}
-	public Ch4Page(WebDriver webDriver){
-		this.webDriver = webDriver;
+	@FindBy(xpath = "//title[contains(text(),'Selenium: Beginners Guide')]")
+	WebElement websiteTitle;
+	WebDriver driver;
+	public Ch4Page(WebDriver driver) {
+		PageFactory.initElements(driver,this);
 	}
 	public void goToHomePage() {
 		goBackToPreviousPage.click(); // and come back to this page
@@ -56,6 +59,9 @@ class Ch4Page{
 			option.selectByIndex(i);
 		}
 	}
+	public String getTitle() {
+		return websiteTitle.getText();
+	}
 	public void clickOnThisTextField() {
 		thisTextFieldDoingNothing.click();
 	}
@@ -73,5 +79,8 @@ class Ch4Page{
 		Actions builder = new Actions(webDriver);
 		builder.moveToElement(hoverArena).perform();
 		webDriver.switchTo().alert().accept();
+	}
+	public static String getPageName() {
+		return "Ch4 Page";
 	}
 }

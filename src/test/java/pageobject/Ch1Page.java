@@ -2,11 +2,14 @@ package pageobject;
 
 import java.util.List;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
-class C1Page {
+public class Ch1Page {
+	
 	@FindBy(id = "radiobutton")
 	WebElement radioButton;
 
@@ -36,6 +39,16 @@ class C1Page {
 
 	@FindBy(xpath = "//div[@id='html5div']")
 	WebElement contentTable;
+
+	@FindBy(xpath = "//title[contains(text(),'Selenium: Beginners Guide')]")
+	WebElement websiteTitle;
+	public String getTitle() {
+		return websiteTitle.getText();
+	}
+	WebDriver driver;
+	public Ch1Page(WebDriver driver) {
+		PageFactory.initElements(driver,this);
+	}
 
 	public void clickOnRadioButton() {
 		radioButton.click();
@@ -85,5 +98,10 @@ class C1Page {
 		}
 
 	}
-
+	public String whereIAm() {
+		return websiteTitle.getText();
+	}
+	public static String getPageName() {
+		return "Ch1 Page";
+	}
 }
