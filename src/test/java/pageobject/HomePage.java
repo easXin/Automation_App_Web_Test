@@ -48,15 +48,13 @@ public class HomePage {
 		chapter8.sendKeys(Keys.RETURN);
 	}
 	
-	public void setTextInTextField() {
+	public void setTextInTextField(Random random) {
 		String tempArr[] = {"OH NO, HERE WE GO AGAIN", "GOOGLE IS MY BEST FRIEND",
 							"WHY CAN YOU EVEN SEE ME", "WHAT AM I DOING HERE",
 							"I AM BORED","STILL THINKING ABOUT TESTING",
-							"I HAVE NO IDEA ON TOP OF MY HEAD"};
-		int max = tempArr.length-1;
-		int min = 0;
-	
-		textField.sendKeys(tempArr[(int) ((Math.random() * ((max - min) + 1)) + min)]);
+							"I HAVE NO IDEA ON TOP OF MY HEAD"}; 
+		int index = (int)(0+random.nextInt((tempArr.length-1)-0+1));
+		textField.sendKeys(tempArr[index]);
 	}
 	
 }
