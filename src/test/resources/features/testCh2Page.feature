@@ -8,6 +8,7 @@ Scenario: Validate functionality of all six buttons
 	Then I click on each one of them 
 	But nothing has changed except I clicked all the element once 
 	Then close browser 
+	
 Scenario: Click on the index will redirect current page to main page 
 	Given I am on the home page 
 	When I click on chapter2 

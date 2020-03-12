@@ -85,20 +85,6 @@ public class HomePage {
 		return getChapter8().isEnabled();
 	}
 	
-	public void selectAllTheText() {
-
-	}
-	public String getTitle() {
-		return websiteTitle.getText();
-	}
-	public void clickOnLink() {
-		chapter1.click();
-	}
-
-	public void setTextField(WebElement textField) {
-		this.textField = textField;
-	}
-
 	public void checkoutChapter1() {
 		chapter1.sendKeys(Keys.RETURN);
 	}
@@ -125,8 +111,8 @@ public class HomePage {
 				" I HAVE NO IDEA ON TOP OF MY HEAD" };
 		textField.sendKeys(tempArr[getRandomInteger(6, 0)]);
 	}
-	public static String getPageName() {
-		return "Main Page";
+	public String getTitle() {
+		return websiteTitle.getText();
 	}
 	public int getRandomInteger(int max, int min) {
 		return ((int) (Math.random() * (max - min))) + min;

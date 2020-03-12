@@ -53,9 +53,9 @@ public class Ch1Page {
 	
 	@FindBy(xpath="//div[@id='ajaxdiv']")
 	WebElement textField2;
-	int numOfItem;
+
 	public static int temp =0;
-	
+	int numOfItem;
 	public int getNumOfItem() {
 		return numOfItem;
 	}
@@ -84,16 +84,8 @@ public class Ch1Page {
 		return inputArea;
 	}
 
-	public WebElement getDropdownMenu() {
-		return dropdownMenu;
-	}
-
 	public WebElement getCheckBox() {
 		return checkBox;
-	}
-
-	public WebElement getGoToHomePage() {
-		return goToHomePage;
 	}
 
 	public WebElement getBtn_loadTextToField() {
@@ -120,13 +112,6 @@ public class Ch1Page {
 		return contentTable;
 	}
 
-	public WebElement getWebsiteTitle() {
-		return websiteTitle;
-	}
-
-	public WebDriver getDriver() {
-		return driver;
-	}
 	public int numOfCharactor() {
 		return getContentTable().getText().length();
 	}
@@ -151,10 +136,6 @@ public class Ch1Page {
 
 	public void goToHomePage() {
 		goToHomePage.click();
-	}
-
-	public void loadText() {
-		btn_loadTextToField.click();
 	}
 
 	public void clickOnanchor1() {
@@ -194,9 +175,7 @@ public class Ch1Page {
 		anchor_3.click();
 		
 	}
-	public void clickOnVerifyBtn() {
-		btn_verify.click();
-	}
+
 	public void isClickedVerBtn() {
 		this.temp = 1;
 	}
@@ -205,10 +184,6 @@ public class Ch1Page {
 	}
 	public void cleanUpInput() {
 		getInputArea().clear();
-	}
-	public void popUpWindow() {
-
-    
 	}
 
 
@@ -232,10 +207,5 @@ public class Ch1Page {
 		setNumOfItem(i);
 	}
 	
-	public String whereIAm() {
-		return websiteTitle.getText();
-	}
-	public static String getPageName() {
-		return "Ch1 Page";
-	}
+
 }

@@ -18,9 +18,7 @@ public class Ch8Page{
 	public String getTitle() {
 		return websiteTitle.getText();
 	}
-	public static String getPageName() {
-		return "Ch8 Page";
-	}
+
 	public void clickCookieBtn() {
 		btn_secondCookies.click();
 	}

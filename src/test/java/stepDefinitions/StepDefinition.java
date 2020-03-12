@@ -674,17 +674,9 @@ public class StepDefinition {
 		return ((int) (Math.random() * (max - min))) + min;
 	}
 
-	public void redirectingToPage(String loc) {
-		System.out.println("Now redirecting to " + loc);
-	}
-
 	public void tearDownTest() {
 		driver.close();
 		driver.quit();
-	}
-
-	public void curLoc(String loc) {
-		System.out.println("Current page : " + loc);
 	}
 
 	public void threadSleep_5000() {

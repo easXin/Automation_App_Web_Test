@@ -95,10 +95,6 @@ public class Ch4Page {
 		return goBackToPreviousPage;
 	}
 
-	public void enterSomeText1() {
-		firstInputField.sendKeys("Hello");
-	}
-
 	public void dropDownMenu1() {
 		Select option = new Select(dropDownMenu1);
 		// IDE Core RC Grid
@@ -152,30 +148,4 @@ public class Ch4Page {
 		return websiteTitle.getText();
 	}
 
-	public void clickOnThisTextField() {
-		thisTextFieldDoingNothing.click();
-	}
-
-	public void dropDownMenu2() {
-		Select option = new Select(dropDownMenu1);
-		option.equals(null);
-	}
-
-	public void enterSomeText2() {
-		secondInputField.sendKeys("Wassup");
-	}
-
-	public void enterSomeText3() {
-		thirdInputField.sendKeys("Hello from the other side");
-	}
-
-	public void dismissAlertWindows() {
-		Actions builder = new Actions(webDriver);
-		builder.moveToElement(hoverArena).perform();
-		webDriver.switchTo().alert().accept();
-	}
-
-	public static String getPageName() {
-		return "Ch4 Page";
-	}
 }

@@ -14,15 +14,11 @@ public class Ch3Page{
 	public Ch3Page(WebDriver driver) {
 		PageFactory.initElements(driver,this);
 	}
-	public void goBackToPreviousPage() {
-		goBackToHomePage.click();
-	}
+
 	public String getTitle() {
 		return websiteTitle.getText();
 	}
-	public static String getPageName() {
-		return "Ch3 Page";
-	}
+
 	public WebElement getGoBackToHomePage() {
 		return goBackToHomePage;
 	}

@@ -43,9 +43,7 @@ public class Ch2Page{
 	public String getTitle() {
 		return websiteTitle.getText();
 	}
-	public void clickOnIndex() {
-		goBackToHomePage.click();
-	}
+
 	public void goToHomePage() {
 		getGoBackToHomePage().click();
 	}
@@ -54,9 +52,7 @@ public class Ch2Page{
 	public WebElement getGoBackToHomePage() {
 		return goBackToHomePage;
 	}
-	public void setGoBackToHomePage(WebElement goBackToHomePage) {
-		this.goBackToHomePage = goBackToHomePage;
-	}
+
 	public void clickOnBtnWithName() {
 		btn_withNameDoesNothing.click();
 	}
@@ -83,39 +79,27 @@ public class Ch2Page{
 	public WebElement getBtn_withNameDoesNothing() {
 		return btn_withNameDoesNothing;
 	}
-	public void setBtn_withNameDoesNothing(WebElement btn_withNameDoesNothing) {
-		this.btn_withNameDoesNothing = btn_withNameDoesNothing;
-	}
+
 	public WebElement getBtn_randomDoesNothing() {
 		return btn_randomDoesNothing;
 	}
-	public void setBtn_randomDoesNothing(WebElement btn_randomDoesNothing) {
-		this.btn_randomDoesNothing = btn_randomDoesNothing;
-	}
+
 	public WebElement getBtn_withIdDoesNothing() {
 		return btn_withIdDoesNothing;
 	}
-	public void setBtn_withIdDoesNothing(WebElement btn_withIdDoesNothing) {
-		this.btn_withIdDoesNothing = btn_withIdDoesNothing;
-	}
+
 	public WebElement getBtn_siblingDoesNothing() {
 		return btn_siblingDoesNothing;
 	}
-	public void setBtn_siblingDoesNothing(WebElement btn_siblingDoesNothing) {
-		this.btn_siblingDoesNothing = btn_siblingDoesNothing;
-	}
+
 	public WebElement getBtn_verifyDoesNothng() {
 		return btn_verifyDoesNothng;
 	}
-	public void setBtn_verifyDoesNothng(WebElement btn_verifyDoesNothng) {
-		this.btn_verifyDoesNothng = btn_verifyDoesNothng;
-	}
+
 	public WebElement getBtn_chocolateDoesNothing() {
 		return btn_chocolateDoesNothing;
 	}
-	public void setBtn_chocolateDoesNothing(WebElement btn_chocolateDoesNothing) {
-		this.btn_chocolateDoesNothing = btn_chocolateDoesNothing;
-	}
+
 	public boolean isChocolateClicked() {
 		return getBtn_chocolateDoesNothing().isEnabled();
 	}
@@ -134,10 +118,5 @@ public class Ch2Page{
 	public boolean isNameClicked() {
 		return getBtn_withNameDoesNothing().isEnabled();
 	}
-	
-	public static String getPageName() {
-		return "Ch2 Page";
-	}
-
 	
 }
