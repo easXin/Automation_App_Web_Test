@@ -1,12 +1,5 @@
 package pageobject;
 
-import static org.testng.Assert.assertTrue;
-
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
-
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
 public class Ch1Page {
-	
+
 	@FindBy(id = "radiobutton")
 	WebElement radioButton;
 
@@ -48,23 +41,27 @@ public class Ch1Page {
 	@FindBy(xpath = "//title[contains(text(),'Selenium: Beginners Guide')]")
 	WebElement websiteTitle;
 
-	@FindBy(xpath="//input[@id='storeinput']")
+	@FindBy(xpath = "//input[@id='storeinput']")
 	WebElement inputArea;
-	
-	@FindBy(xpath="//div[@id='ajaxdiv']")
+
+	@FindBy(xpath = "//div[@id='ajaxdiv']")
 	WebElement textField2;
 
-	public static int temp =0;
+	public static int temp = 0;
 	int numOfItem;
+
 	public int getNumOfItem() {
 		return numOfItem;
 	}
+
 	public WebElement getTextField2() {
 		return textField2;
 	}
+
 	public boolean isShow() {
 		return getTextField2().isDisplayed();
 	}
+
 	public void setNumOfItem(int numOfItem) {
 		this.numOfItem = numOfItem;
 	}
@@ -72,14 +69,17 @@ public class Ch1Page {
 	public String getTitle() {
 		return websiteTitle.getText();
 	}
+
 	WebDriver driver;
+
 	public Ch1Page(WebDriver driver) {
-		PageFactory.initElements(driver,this);
+		PageFactory.initElements(driver, this);
 	}
 
 	public WebElement getRadioButton() {
 		return radioButton;
 	}
+
 	public WebElement getInputArea() {
 		return inputArea;
 	}
@@ -95,7 +95,7 @@ public class Ch1Page {
 	public WebElement getAnchor_1() {
 		return anchor_1;
 	}
-	
+
 	public WebElement getAnchor_2() {
 		return anchor_2;
 	}
@@ -115,17 +115,19 @@ public class Ch1Page {
 	public int numOfCharactor() {
 		return getContentTable().getText().length();
 	}
+
 	public int numOfCharactorInput() {
 		return getInputArea().getText().length();
 	}
+
 	public void clickOnRadioButton() {
 		radioButton.click();
 	}
-	
+
 	public boolean isRadioBtnClicked() {
 		return getRadioButton().isSelected();
 	}
-	
+
 	public boolean isCheckBoxSelected() {
 		return getCheckBox().isSelected();
 	}
@@ -141,57 +143,59 @@ public class Ch1Page {
 	public void clickOnanchor1() {
 		anchor_1.click();
 	}
-	
 
 	public void clickOnanchor2() {
 		anchor_2.click();
 	}
-	
+
 	public boolean isAnchor1Clicked() {
 		return getAnchor_1().isEnabled();
 	}
+
 	public boolean isAnchor2Clicked() {
 		return getAnchor_2().isEnabled();
 	}
-	
+
 	public boolean isAnchor3Clicked() {
 		return getAnchor_3().isEnabled();
 	}
+
 	public void addContent(String temp) {
 		String tempArr[] = { " OH NO, HERE WE GO AGAIN", " GOOGLE IS MY BEST FRIEND", "TESTING ...",
 				" WHAT AM I DOING HERE", "I AM BORED", " STILL THINKING ABOUT TESTING",
-				" I HAVE NO IDEA ON TOP OF MY HEAD" ," Okay, let's go"};
+				" I HAVE NO IDEA ON TOP OF MY HEAD", " Okay, let's go" };
 		String str = tempArr[((int) (Math.random() * (7 - 0))) + 0];
-		
-		if(temp=="input") {
+
+		if (temp == "input") {
 			getInputArea().sendKeys(str);
-		}else {
-		   getContentTable().sendKeys(str);
-		}  
-		
+		} else {
+			getContentTable().sendKeys(str);
+		}
+
 	}
 
 	public void clickOnanchor3() {
 		anchor_3.click();
-		
+
 	}
 
 	public void isClickedVerBtn() {
 		this.temp = 1;
 	}
+
 	public void cleanUpText() {
 		getContentTable().clear();
 	}
+
 	public void cleanUpInput() {
 		getInputArea().clear();
 	}
-
 
 	public void dropdownMenu() {
 		Select option = new Select(dropdownMenu);
 		int i = 0;
 		// IDE Core RC Grid
-		for ( i = 0; i < 4; i++) {
+		for (i = 0; i < 4; i++) {
 			try {
 				Thread.sleep(2000);
 				option.selectByIndex(i);
@@ -201,11 +205,11 @@ public class Ch1Page {
 			}
 			option.selectByIndex(i);
 		}
-		numOfOption( i);
+		numOfOption(i);
 	}
-	public void numOfOption(int i ) {
+
+	public void numOfOption(int i) {
 		setNumOfItem(i);
 	}
-	
 
 }

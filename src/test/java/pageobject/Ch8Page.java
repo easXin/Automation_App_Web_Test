@@ -5,16 +5,19 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class Ch8Page{
-	@FindBy(xpath="//input[@id='secondCookie']")
+public class Ch8Page {
+	@FindBy(xpath = "//input[@id='secondCookie']")
 	WebElement btn_secondCookies;
-	
-	WebDriver driver;
+
+	WebDriver driver = null;
+
 	public Ch8Page(WebDriver driver) {
-		PageFactory.initElements(driver,this);
+		PageFactory.initElements(driver, this);
 	}
+
 	@FindBy(xpath = "//title[contains(text(),'Selenium: Beginners Guide')]")
 	WebElement websiteTitle;
+
 	public String getTitle() {
 		return websiteTitle.getText();
 	}
@@ -22,11 +25,13 @@ public class Ch8Page{
 	public void clickCookieBtn() {
 		btn_secondCookies.click();
 	}
+
 	public WebElement getBtn_SecondCookies() {
 		return btn_secondCookies;
 	}
+
 	public boolean isBtnClicked() {
-		return getBtn_SecondCookies().isEnabled(); 
+		return getBtn_SecondCookies().isEnabled();
 	}
 
 }

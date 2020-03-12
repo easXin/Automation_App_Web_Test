@@ -1,12 +1,8 @@
 package pageobject;
 
-import java.util.Random;
-
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -29,11 +25,11 @@ public class HomePage {
 
 	@FindBy(xpath = "//input[@id='q']")
 	WebElement textField;
-	
+
 	@FindBy(xpath = "//title[contains(text(),'Selenium: Beginners Guide')]")
 	WebElement websiteTitle;
-	
-	WebDriver driver;
+
+	WebDriver driver = null;
 
 	public HomePage(WebDriver driver) {
 		PageFactory.initElements(driver, this);
@@ -58,13 +54,15 @@ public class HomePage {
 	public WebElement getChapter8() {
 		return chapter8;
 	}
+
 	public boolean isTextFieldSelected() {
 		return textField.isSelected();
 	}
+
 	public boolean isTextFieldBlank() {
 		return textField.isEnabled();
 	}
-	
+
 	public boolean isCh1Visited() {
 		return getChapter1().isEnabled();
 	}
@@ -84,7 +82,7 @@ public class HomePage {
 	public boolean isCh8Visited() {
 		return getChapter8().isEnabled();
 	}
-	
+
 	public void checkoutChapter1() {
 		chapter1.sendKeys(Keys.RETURN);
 	}
@@ -111,9 +109,11 @@ public class HomePage {
 				" I HAVE NO IDEA ON TOP OF MY HEAD" };
 		textField.sendKeys(tempArr[getRandomInteger(6, 0)]);
 	}
+
 	public String getTitle() {
 		return websiteTitle.getText();
 	}
+
 	public int getRandomInteger(int max, int min) {
 		return ((int) (Math.random() * (max - min))) + min;
 	}

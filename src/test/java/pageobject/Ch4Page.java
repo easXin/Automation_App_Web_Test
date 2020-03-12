@@ -2,7 +2,6 @@ package pageobject;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
@@ -15,18 +14,6 @@ public class Ch4Page {
 	@FindBy(xpath = "//input[@id='dateInput']")
 	WebElement firstInputField;
 
-	public WebElement getThirdInputField() {
-		return thirdInputField;
-	}
-
-	public WebElement getFirstInputField() {
-		return firstInputField;
-	}
-
-	public WebElement getSecondInputField() {
-		return secondInputField;
-	}
-
 	@FindBy(xpath = "//select[@id='selecttype']")
 	WebElement dropDownMenu1;
 
@@ -37,23 +24,22 @@ public class Ch4Page {
 		return thisTextFieldDoingNothing;
 	}
 
-	
-	
 	public void clickOnTextBtn() {
 		thisTextFieldDoingNothing.click();
 	}
-	
+
 	public boolean isTextBtnClicked() {
 		return getThisTextFieldDoingNothing().isEnabled();
 	}
-	
+
 	public void clickOnDropdownBtn2() {
 		getDropDownMenu2_doingNothing().click();
 	}
-	
+
 	public boolean isDropdownBtn2Clicked() {
 		return getDropDownMenu2_doingNothing().isEnabled();
 	}
+
 	public WebElement getDropDownMenu2_doingNothing() {
 		return dropDownMenu2_doingNothing;
 	}
@@ -110,6 +96,18 @@ public class Ch4Page {
 		}
 	}
 
+	public WebElement getThirdInputField() {
+		return thirdInputField;
+	}
+
+	public WebElement getFirstInputField() {
+		return firstInputField;
+	}
+
+	public WebElement getSecondInputField() {
+		return secondInputField;
+	}
+
 	public void addContent(int temp) {
 		String tempArr[] = { " OH NO, HERE WE GO AGAIN", " GOOGLE IS MY BEST FRIEND", "TESTING ...",
 				" WHAT AM I DOING HERE", "I AM BORED", " STILL THINKING ABOUT TESTING",
@@ -125,25 +123,31 @@ public class Ch4Page {
 		}
 
 	}
+
 	public int numOfCharactor1() {
 		return getFirstInputField().getText().length();
 	}
+
 	public int numOfCharactor2() {
 		return getSecondInputField().getText().length();
 	}
+
 	public int numOfCharactor3() {
 		return getThirdInputField().getText().length();
 	}
-	
+
 	public void cleanUpText1() {
 		getFirstInputField().clear();
 	}
+
 	public void cleanUpText2() {
 		getSecondInputField().clear();
 	}
+
 	public void cleanUpText3() {
 		getThirdInputField().clear();
 	}
+
 	public String getTitle() {
 		return websiteTitle.getText();
 	}
