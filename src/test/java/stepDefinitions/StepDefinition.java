@@ -473,11 +473,38 @@ public class StepDefinition {
     }
 	/* Chapter 2 */
  // =======================================================================
-	/* Chapter 3 */
+
+    @When("^I click on chapter3$")
+    public void i_click_on_chapter3() throws Throwable {
+    	homePage = new HomePage(driver);
+		actionClickAndHold(homePage.getChapter3());
+		threadSleep_2000();;
+    }
+
+    @When("^I click on the index on ch3 page$")
+    public void i_click_on_the_index_on_ch3_page() throws Throwable {
+     		ch3 = new Ch3Page(driver);
+    		ch3.goToHomePage();
+    		homePage = new HomePage(driver);
+    		assertTrue(homePage.isCh2Visited());
+    }
+    @Then("^I will be redirected to the ch3 page$")
+    public void i_will_be_redirected_to_the_ch3_page() throws Throwable {
+    	assertNotEquals(homeUrl,currentURL(driver));
+		threadSleep_2000();
+    }
+    @Then("^I see an index hyperlink on the ch3 page$")
+    public void i_see_an_index_hyperlink_on_the_ch3_page() throws Throwable {
+        ch3 = new Ch3Page(driver);
+        assertNotNull(ch3.getGoBackToHomePage());
+    }
+    /* Chapter 3 */
  // =======================================================================
-	/* Chapter 4 */
+	
+    /* Chapter 4 */
  // =======================================================================
-	/* Chapter 8 */
+	
+    /* Chapter 8 */
  // =======================================================================
 	/*
 	 * --------------------- Helper methods---------------------------------------

@@ -23,4 +23,11 @@ public class Ch3Page{
 	public static String getPageName() {
 		return "Ch3 Page";
 	}
+	public WebElement getGoBackToHomePage() {
+		return goBackToHomePage;
+	}
+	public void goToHomePage() {
+		getGoBackToHomePage().click();
+	}
+	
 }
