@@ -48,6 +48,7 @@ public class StepDefinition {
 	Ch8Page ch8 = null;
 	boolean isSelected = false;
 	private int i_numN, i_numO;
+
 	public void init() {
 		WebDriverManager.chromedriver().setup();
 		driver = new ChromeDriver();
@@ -59,7 +60,7 @@ public class StepDefinition {
 	@Given("^I see five hyperlinks on the site$")
 	public void shouldNavigateToTestorSite() throws Throwable {
 		init();
-		assertEquals(numberOfElementOnthePage("//a"),5);
+		assertEquals(numberOfElementOnthePage("//a"), 5);
 		threadSleep_3000();
 	}
 
@@ -179,7 +180,7 @@ public class StepDefinition {
 	@Given("there is a text editing field on the page")
 	public void oneInputFieldOnthePage() throws Throwable {
 		init();
-		assertEquals(numberOfElementOnthePage("//input"),1);
+		assertEquals(numberOfElementOnthePage("//input"), 1);
 		threadSleep_3000();
 	}
 
@@ -203,7 +204,7 @@ public class StepDefinition {
 	@Given("^I am on the home page$")
 	public void enterMainPage() throws Throwable {
 		init();
-		assertEquals(homeUrl,currentURL(driver));
+		assertEquals(homeUrl, currentURL(driver));
 		threadSleep_2000();
 	}
 
@@ -216,7 +217,7 @@ public class StepDefinition {
 
 	@Then("^I will be redirected to the ch1 page$")
 	public void takenToCh1Page() throws Throwable {
-		assertNotEquals(homeUrl,currentURL(driver));
+		assertNotEquals(homeUrl, currentURL(driver));
 		threadSleep_2000();
 	}
 
@@ -230,7 +231,7 @@ public class StepDefinition {
 
 	@Then("^I should be taken back to the main page$")
 	public void takeBackToMain() throws Throwable {
-		assertEquals(homeUrl,currentURL(driver));
+		assertEquals(homeUrl, currentURL(driver));
 		tearDownTest();
 	}
 
@@ -238,7 +239,7 @@ public class StepDefinition {
 	public void i_click_on_the_radio_button() throws Throwable {
 		ch1 = new Ch1Page(driver);
 		ch1.clickOnRadioButton();
-		
+
 	}
 
 	@Then("^radio button is selected$")
@@ -253,12 +254,11 @@ public class StepDefinition {
 		ch1.clickOnCheckBox();
 	}
 
-
 	@Then("^It is checked$")
 	public void it_is_checked() throws Throwable {
 		ch1 = new Ch1Page(driver);
 		assertTrue(ch1.isCheckBoxSelected());
-		
+
 	}
 
 	@And("^radio button can not be unselected$")
@@ -279,233 +279,265 @@ public class StepDefinition {
 		assertTrue(ch1.isCheckBoxSelected());
 		threadSleep_2000();
 		tearDownTest();
-		
-	}
-	
-    @When("^I see the dropdown menu$")
-    public void oneDropdownMenu() throws Throwable {
-    	ch1 = new Ch1Page(driver);
-    	assertEquals(1, numberOfElementOnthePage("//select[@id='selecttype']"));
-    }
 
-    @Then("^I want to click on every item on the menu$")
-    public void clickOnAllFourItems() throws Throwable {
-       ch1 = new Ch1Page(driver);
-       ch1.dropdownMenu();
-       assertEquals(ch1.getNumOfItem(), 4);   
-    }
+	}
+
+	@When("^I see the dropdown menu$")
+	public void oneDropdownMenu() throws Throwable {
+		ch1 = new Ch1Page(driver);
+		assertEquals(1, numberOfElementOnthePage("//select[@id='selecttype']"));
+	}
+
+	@Then("^I want to click on every item on the menu$")
+	public void clickOnAllFourItems() throws Throwable {
+		ch1 = new Ch1Page(driver);
+		ch1.dropdownMenu();
+		assertEquals(ch1.getNumOfItem(), 4);
+	}
+
 	@And("^go back to main page$")
 	public void goBackToMain() throws Throwable {
 		ch1 = new Ch1Page(driver);
-	    ch1.goToHomePage();
+		ch1.goToHomePage();
 		assertEquals(homeUrl, currentURL(driver));
 		tearDownTest();
 	}
+
 	@And("^close browser$")
 	public void closeNow() throws Throwable {
 		tearDownTest();
 	}
-    @And("^I see two buttons, one textbox, one input field on this page$")
-    public void i_see_two_buttons_one_textbox_one_input_field_on_this_page() throws Throwable {
-      ch1 = new Ch1Page(driver);
-      assertNotNull(ch1.getBtn_verify());
-      assertNotNull(ch1.getBtn_loadTextToField());
-      assertNotNull(ch1.getInputArea());
-      assertNotNull(ch1.getContentTable());      
-    }
-    @When("^I click load text button$")
-    public void i_click_load_text_button() throws Throwable {
-       ch1 = new Ch1Page(driver);
-       i_numN = ch1.numOfCharactor();
-       int i = 0;
-       while(i<3) {
-    	   actionClickAndHold(ch1.getBtn_loadTextToField());
-    	   threadSleep_2000();
-    	   i++;
-       }
-       i_numO = ch1.numOfCharactor();
-     
-    }
-    
-    @Then("^new content will be added into textbox$")
-    public void new_content_will_be_added_into_textbox() throws Throwable {
-    // if numofchar are not equals, then new content has added into the text field	
-     assertNotEquals(i_numN,i_numO);
-    }
 
-    @When("^I click on verify button$")
-    public void i_click_on_verify_button() throws Throwable {
-       ch1 = new Ch1Page(driver);
-       ch1.isClickedVerBtn();
-    }
+	@And("^I see two buttons, one textbox, one input field on this page$")
+	public void i_see_two_buttons_one_textbox_one_input_field_on_this_page() throws Throwable {
+		ch1 = new Ch1Page(driver);
+		assertNotNull(ch1.getBtn_verify());
+		assertNotNull(ch1.getBtn_loadTextToField());
+		assertNotNull(ch1.getInputArea());
+		assertNotNull(ch1.getContentTable());
+	}
 
-    @Then("^nothing would happen$")
-    public void nothing_would_happen() throws Throwable {
-    	assertTrue(Ch1Page.temp!=0);
-    }
-    
-    @When("^I click on the textbox or input field$")
-    public void i_click_on_the_textbox_or_input_field() throws Throwable {
-    	ch1 = new Ch1Page(driver);
-    	ch1.addContent("content");
-    	ch1.cleanUpText();
-    	ch1.addContent("content");
-    	threadSleep_2000();
-    	ch1.addContent("content");
-    	threadSleep_2000();
-    	ch1.addContent("content");
-    	threadSleep_2000();
-    	ch1.addContent("input");
-    	ch1.cleanUpText();
-    	threadSleep_2000();
-    	ch1.addContent("input");
-    	threadSleep_3000();
-    	ch1.cleanUpInput();
-    	threadSleep_2000();
-    	ch1.addContent("input");
-    	ch1.cleanUpText();
-    	threadSleep_2000();
-    	ch1.addContent("content");
-    	ch1.addContent("input");
-    	threadSleep_5000();
-    	ch1.cleanUpText();
-    	ch1.cleanUpInput();
-    }
+	@When("^I click load text button$")
+	public void i_click_load_text_button() throws Throwable {
+		ch1 = new Ch1Page(driver);
+		i_numN = ch1.numOfCharactor();
+		int i = 0;
+		while (i < 3) {
+			actionClickAndHold(ch1.getBtn_loadTextToField());
+			threadSleep_2000();
+			i++;
+		}
+		i_numO = ch1.numOfCharactor();
 
+	}
 
-    @Then("I can editting both texting filed")
-    public void i_can_editting_both_texting_filed() {
-    	assertEquals(ch1.numOfCharactor(), ch1.numOfCharactorInput());
-    }
+	@Then("^new content will be added into textbox$")
+	public void new_content_will_be_added_into_textbox() throws Throwable {
+		// if numofchar are not equals, then new content has added into the text field
+		assertNotEquals(i_numN, i_numO);
+	}
 
-    @When("^I click on first two links$")
-    public void i_click_on_first_two_links() throws Throwable {
-    	ch1 = new Ch1Page(driver);
-    	ch1.clickOnanchor1();
-    	ch1.clickOnanchor2();
-    	assertTrue(ch1.isAnchor1Clicked());
-    	assertTrue(ch1.isAnchor2Clicked());
-    	//ch1.isAnchor2Clicked();
-    }
-    
-    @Then("^the page would pop out a new windows$")
-    public void the_page_would_pop_out_a_new_windows() throws Throwable {
-    	ch1 = new Ch1Page(driver);
-     	Set<String> windowId = driver.getWindowHandles();    // get  window id of current window
-        Iterator<String> itererator = windowId.iterator();   
-        String  newAdwinID = itererator.next();
-        driver.switchTo().window(newAdwinID);
-        threadSleep_3000();
-    }
+	@When("^I click on verify button$")
+	public void i_click_on_verify_button() throws Throwable {
+		ch1 = new Ch1Page(driver);
+		ch1.isClickedVerBtn();
+	}
 
-    @When("^I clike on the third link$")
-    public void i_clike_on_the_third_link() throws Throwable {
-     	ch1 = new Ch1Page(driver);
-     	ch1.clickOnanchor3();
-     	assertTrue(ch1.isAnchor3Clicked());
-     	threadSleep_3000();
-    }
+	@Then("^nothing would happen$")
+	public void nothing_would_happen() throws Throwable {
+		assertTrue(Ch1Page.temp != 0);
+	}
 
-    @Then("^a paragraph would displays on the page$")
-    public void a_new_text_field_would_displays_on_my_current_page() throws Throwable {
-    	ch1 = new Ch1Page(driver);
-    	assertTrue(ch1.isShow());
-    }
+	@When("^I click on the textbox or input field$")
+	public void i_click_on_the_textbox_or_input_field() throws Throwable {
+		ch1 = new Ch1Page(driver);
+		ch1.addContent("content");
+		ch1.cleanUpText();
+		ch1.addContent("content");
+		threadSleep_2000();
+		ch1.addContent("content");
+		threadSleep_2000();
+		ch1.addContent("content");
+		threadSleep_2000();
+		ch1.addContent("input");
+		ch1.cleanUpText();
+		threadSleep_2000();
+		ch1.addContent("input");
+		threadSleep_3000();
+		ch1.cleanUpInput();
+		threadSleep_2000();
+		ch1.addContent("input");
+		ch1.cleanUpText();
+		threadSleep_2000();
+		ch1.addContent("content");
+		ch1.addContent("input");
+		threadSleep_5000();
+		ch1.cleanUpText();
+		ch1.cleanUpInput();
+	}
+
+	@Then("I can editting both texting filed")
+	public void i_can_editting_both_texting_filed() {
+		assertEquals(ch1.numOfCharactor(), ch1.numOfCharactorInput());
+	}
+
+	@When("^I click on first two links$")
+	public void i_click_on_first_two_links() throws Throwable {
+		ch1 = new Ch1Page(driver);
+		ch1.clickOnanchor1();
+		ch1.clickOnanchor2();
+		assertTrue(ch1.isAnchor1Clicked());
+		assertTrue(ch1.isAnchor2Clicked());
+		// ch1.isAnchor2Clicked();
+	}
+
+	@Then("^the page would pop out a new windows$")
+	public void the_page_would_pop_out_a_new_windows() throws Throwable {
+		ch1 = new Ch1Page(driver);
+		Set<String> windowId = driver.getWindowHandles(); // get window id of current window
+		Iterator<String> itererator = windowId.iterator();
+		String newAdwinID = itererator.next();
+		driver.switchTo().window(newAdwinID);
+		threadSleep_3000();
+	}
+
+	@When("^I clike on the third link$")
+	public void i_clike_on_the_third_link() throws Throwable {
+		ch1 = new Ch1Page(driver);
+		ch1.clickOnanchor3();
+		assertTrue(ch1.isAnchor3Clicked());
+		threadSleep_3000();
+	}
+
+	@Then("^a paragraph would displays on the page$")
+	public void a_new_text_field_would_displays_on_my_current_page() throws Throwable {
+		ch1 = new Ch1Page(driver);
+		assertTrue(ch1.isShow());
+	}
 
 	/* Chapter 1 */
- // =======================================================================
-    @When("^I click on chapter2$")
-    public void i_click_on_chapter2() throws Throwable {
-    	homePage = new HomePage(driver);
+	// =======================================================================
+	@When("^I click on chapter2$")
+	public void i_click_on_chapter2() throws Throwable {
+		homePage = new HomePage(driver);
 		actionClickAndHold(homePage.getChapter2());
-		threadSleep_2000();;
-    }
+		threadSleep_2000();
+		;
+	}
 
-    @When("^I enter ch2 page, I will encounter six buttons$")
-    public void i_enter_ch2_page_i_will_encounter_six_buttons() throws Throwable {
-    	ch2 = new Ch2Page(driver);
+	@When("^I enter ch2 page, I will encounter six buttons$")
+	public void i_enter_ch2_page_i_will_encounter_six_buttons() throws Throwable {
+		ch2 = new Ch2Page(driver);
 		List<WebElement> link = driver.findElements(By.tagName("input"));
 		System.out.println(driver.getCurrentUrl());
-		
-    	assertEquals(link.size(),6);
-    }
 
-    @Then("^I will be redirected to the ch2 page$")
-    public void i_will_be_redirected_to_the_ch2_page() throws Throwable {
-    	assertNotEquals(homeUrl,currentURL(driver));
+		assertEquals(link.size(), 6);
+	}
+
+	@Then("^I will be redirected to the ch2 page$")
+	public void i_will_be_redirected_to_the_ch2_page() throws Throwable {
+		assertNotEquals(homeUrl, currentURL(driver));
 		threadSleep_2000();
-    }
+	}
 
-    @Then("^I click on each one of them$")
-    public void i_click_on_each_one_of_them() throws Throwable {
-        ch2 = new Ch2Page(driver);
-        ch2.clickOnBtnChocolate();
-        ch2.clickOnBtnRandom();
-        ch2.clickOnBtnSibling();
-        ch2.clickOnBtnVerify();
-        ch2.clickOnBtnWithId();
-        ch2.clickOnBtnWithName();
-    }
+	@Then("^I click on each one of them$")
+	public void i_click_on_each_one_of_them() throws Throwable {
+		ch2 = new Ch2Page(driver);
+		ch2.clickOnBtnChocolate();
+		ch2.clickOnBtnRandom();
+		ch2.clickOnBtnSibling();
+		ch2.clickOnBtnVerify();
+		ch2.clickOnBtnWithId();
+		ch2.clickOnBtnWithName();
+	}
 
-    @But("^nothing has changed except I clicked all the element once$")
-    public void nothing_has_changed_except_i_clicked_all_the_element_once() throws Throwable {
-        ch2 = new Ch2Page(driver);
-        assertTrue(ch2.isChocolateClicked());
-        assertTrue(ch2.isRandomClicked());
-        assertTrue(ch2.isSiblingClicked());
-        assertTrue(ch2.isVerClicked());
-        assertTrue(ch2.isIdClicked());
-        assertTrue(ch2.isNameClicked());
-    }
-    
-    @Then("^I see an index hyperlink on the ch2 page$")
-    public void i_see_an_index_hyperlink_on_the_ch2_page() throws Throwable {
-       ch2 = new Ch2Page(driver);
-       assertNotNull(ch2.getGoBackToHomePage());
-    }
-    
-    @When("I click on the index")
-    public void i_click_on_the_index() throws Throwable {
-    	ch2 = new Ch2Page(driver);
+	@But("^nothing has changed except I clicked all the element once$")
+	public void nothing_has_changed_except_i_clicked_all_the_element_once() throws Throwable {
+		ch2 = new Ch2Page(driver);
+		assertTrue(ch2.isChocolateClicked());
+		assertTrue(ch2.isRandomClicked());
+		assertTrue(ch2.isSiblingClicked());
+		assertTrue(ch2.isVerClicked());
+		assertTrue(ch2.isIdClicked());
+		assertTrue(ch2.isNameClicked());
+	}
+
+	@Then("^I see an index hyperlink on the ch2 page$")
+	public void i_see_an_index_hyperlink_on_the_ch2_page() throws Throwable {
+		ch2 = new Ch2Page(driver);
+		assertNotNull(ch2.getGoBackToHomePage());
+	}
+
+	@When("I click on the index")
+	public void i_click_on_the_index() throws Throwable {
+		ch2 = new Ch2Page(driver);
 		ch2.goToHomePage();
 		homePage = new HomePage(driver);
 		assertTrue(homePage.isCh2Visited());
-    }
+	}
 	/* Chapter 2 */
- // =======================================================================
+	// =======================================================================
 
-    @When("^I click on chapter3$")
-    public void i_click_on_chapter3() throws Throwable {
-    	homePage = new HomePage(driver);
+	@When("^I click on chapter3$")
+	public void i_click_on_chapter3() throws Throwable {
+		homePage = new HomePage(driver);
 		actionClickAndHold(homePage.getChapter3());
-		threadSleep_2000();;
-    }
-
-    @When("^I click on the index on ch3 page$")
-    public void i_click_on_the_index_on_ch3_page() throws Throwable {
-     		ch3 = new Ch3Page(driver);
-    		ch3.goToHomePage();
-    		homePage = new HomePage(driver);
-    		assertTrue(homePage.isCh2Visited());
-    }
-    @Then("^I will be redirected to the ch3 page$")
-    public void i_will_be_redirected_to_the_ch3_page() throws Throwable {
-    	assertNotEquals(homeUrl,currentURL(driver));
 		threadSleep_2000();
-    }
-    @Then("^I see an index hyperlink on the ch3 page$")
-    public void i_see_an_index_hyperlink_on_the_ch3_page() throws Throwable {
-        ch3 = new Ch3Page(driver);
-        assertNotNull(ch3.getGoBackToHomePage());
-    }
-    /* Chapter 3 */
- // =======================================================================
-	
-    /* Chapter 4 */
- // =======================================================================
-	
-    /* Chapter 8 */
- // =======================================================================
+		;
+	}
+
+	@When("^I click on the index on ch3 page$")
+	public void i_click_on_the_index_on_ch3_page() throws Throwable {
+		ch3 = new Ch3Page(driver);
+		ch3.goToHomePage();
+		homePage = new HomePage(driver);
+		assertTrue(homePage.isCh2Visited());
+	}
+
+	@Then("^I will be redirected to the ch3 page$")
+	public void i_will_be_redirected_to_the_ch3_page() throws Throwable {
+		assertNotEquals(homeUrl, currentURL(driver));
+		threadSleep_2000();
+	}
+
+	@Then("^I see an index hyperlink on the ch3 page$")
+	public void i_see_an_index_hyperlink_on_the_ch3_page() throws Throwable {
+		ch3 = new Ch3Page(driver);
+		assertNotNull(ch3.getGoBackToHomePage());
+	}
+	/* Chapter 3 */
+	// =======================================================================
+
+	/* Chapter 4 */
+	// =======================================================================
+	@When("^I click on chapter8$")
+	public void i_click_on_chapter8() throws Throwable {
+		homePage = new HomePage(driver);
+		actionClickAndHold(homePage.getChapter8());
+		threadSleep_2000();
+		
+	}
+
+	@Then("^I will be redirected to the ch8 page$")
+	public void i_will_be_redirected_to_the_ch8_page() throws Throwable {
+		assertNotEquals(homeUrl, currentURL(driver));
+		threadSleep_2000();
+	}
+
+	@And("^on the chapter 8 page, I saw a button$")
+	public void on_the_chapter_8_page_i_saw_a_button() throws Throwable {
+		ch8 = new Ch8Page(driver);
+		ch8.clickCookieBtn();
+	}
+
+	@But("^nothing would happen when I click on that button$")
+	public void nothing_would_happen_when_i_click_on_that_button() throws Throwable {
+		ch8 = new Ch8Page(driver);
+		assertTrue(ch8.isBtnClicked());
+		tearDownTest();
+	}
+	/* Chapter 8 */
+	// =======================================================================
 	/*
 	 * --------------------- Helper methods---------------------------------------
 	 */

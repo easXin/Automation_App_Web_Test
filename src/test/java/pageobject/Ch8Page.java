@@ -24,5 +24,11 @@ public class Ch8Page{
 	public void clickCookieBtn() {
 		btn_secondCookies.click();
 	}
+	public WebElement getBtn_SecondCookies() {
+		return btn_secondCookies;
+	}
+	public boolean isBtnClicked() {
+		return getBtn_SecondCookies().isEnabled(); 
+	}
 
 }
