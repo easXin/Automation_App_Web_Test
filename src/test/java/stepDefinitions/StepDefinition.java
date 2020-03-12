@@ -398,7 +398,6 @@ public class StepDefinition {
         threadSleep_3000();
     }
 
-
     @When("^I clike on the third link$")
     public void i_clike_on_the_third_link() throws Throwable {
      	ch1 = new Ch1Page(driver);
@@ -415,6 +414,63 @@ public class StepDefinition {
 
 	/* Chapter 1 */
  // =======================================================================
+    @When("^I click on chapter2$")
+    public void i_click_on_chapter2() throws Throwable {
+    	homePage = new HomePage(driver);
+		actionClickAndHold(homePage.getChapter2());
+		threadSleep_2000();;
+    }
+
+    @When("^I enter ch2 page, I will encounter six buttons$")
+    public void i_enter_ch2_page_i_will_encounter_six_buttons() throws Throwable {
+    	ch2 = new Ch2Page(driver);
+		List<WebElement> link = driver.findElements(By.tagName("input"));
+		System.out.println(driver.getCurrentUrl());
+		
+    	assertEquals(link.size(),6);
+    }
+
+    @Then("^I will be redirected to the ch2 page$")
+    public void i_will_be_redirected_to_the_ch2_page() throws Throwable {
+    	assertNotEquals(homeUrl,currentURL(driver));
+		threadSleep_2000();
+    }
+
+    @Then("^I click on each one of them$")
+    public void i_click_on_each_one_of_them() throws Throwable {
+        ch2 = new Ch2Page(driver);
+        ch2.clickOnBtnChocolate();
+        ch2.clickOnBtnRandom();
+        ch2.clickOnBtnSibling();
+        ch2.clickOnBtnVerify();
+        ch2.clickOnBtnWithId();
+        ch2.clickOnBtnWithName();
+    }
+
+    @But("^nothing has changed except I clicked all the element once$")
+    public void nothing_has_changed_except_i_clicked_all_the_element_once() throws Throwable {
+        ch2 = new Ch2Page(driver);
+        assertTrue(ch2.isChocolateClicked());
+        assertTrue(ch2.isRandomClicked());
+        assertTrue(ch2.isSiblingClicked());
+        assertTrue(ch2.isVerClicked());
+        assertTrue(ch2.isIdClicked());
+        assertTrue(ch2.isNameClicked());
+    }
+    
+    @Then("^I see an index hyperlink on the ch2 page$")
+    public void i_see_an_index_hyperlink_on_the_ch2_page() throws Throwable {
+       ch2 = new Ch2Page(driver);
+       assertNotNull(ch2.getGoBackToHomePage());
+    }
+    
+    @When("I click on the index")
+    public void i_click_on_the_index() throws Throwable {
+    	ch2 = new Ch2Page(driver);
+		ch2.goToHomePage();
+		homePage = new HomePage(driver);
+		assertTrue(homePage.isCh2Visited());
+    }
 	/* Chapter 2 */
  // =======================================================================
 	/* Chapter 3 */
