@@ -47,6 +47,7 @@ public class StepDefinition {
 	Ch4Page ch4 = null;
 	Ch8Page ch8 = null;
 	boolean isSelected = false;
+	boolean isTrue = false;
 	private int i_numN, i_numO;
 
 	public void init() {
@@ -507,6 +508,114 @@ public class StepDefinition {
 	}
 	/* Chapter 3 */
 	// =======================================================================
+
+    @When("^I click on chapter4$")
+    public void i_click_on_chapter4() throws Throwable {
+    	homePage = new HomePage(driver);
+		actionClickAndHold(homePage.getChapter4());
+		threadSleep_2000();
+    }
+
+    @When("^I click on the index on ch4 page$")
+    public void i_click_on_the_index_on_ch4_page() throws Throwable {
+    	ch4 = new Ch4Page(driver);
+		ch4.goToHomePage();
+		homePage = new HomePage(driver);
+		assertTrue(homePage.isCh4Visited());
+    }
+
+    @When("^I see the dropdown menus$")
+    public void i_see_the_dropdown_menu() throws Throwable {
+    	ch4 = new Ch4Page(driver);                             
+		assertEquals(1, numberOfElementOnthePage("//select[@id='selecttype']"));
+    }
+    @Then("^go back to home page$")
+    public void goToHomePage() throws Throwable {
+    	ch4 = new Ch4Page(driver);
+		ch4.goToHomePage();
+		assertEquals(homeUrl, currentURL(driver));
+		tearDownTest();
+    }
+    @Then("I will be redirected to the ch4 page")
+    public void i_will_be_redirected_to_the_ch4_page() throws Throwable {
+    	assertNotEquals(homeUrl, currentURL(driver));
+		threadSleep_2000();
+    }
+
+    @Then("I see an index hyperlink on the ch4 page")
+    public void i_see_an_index_hyperlink_on_the_ch4_page() throws Throwable {
+    	ch4 = new Ch4Page(driver);
+		assertNotNull(ch4.getGoBackToPreviousPage());
+    }
+    
+    @Then("^I want to click on every item on the menu $")
+    public void i_want_to_click_on_every_item_on_the_menu() throws Throwable {
+    	ch4 = new Ch4Page(driver);
+		ch4.dropDownMenu1();
+		assertEquals(ch4.getNumOfItem(), 4);
+    }
+    
+    @When("^I click on the input field$")
+    public void i_click_on_the_input_field() throws Throwable {
+    	ch4 = new Ch4Page(driver);
+    	ch4.addContent(1);
+    	ch4.cleanUpText1();
+    	threadSleep_2000();
+    	ch4.addContent(2);
+    	ch4.addContent(3);
+    	threadSleep_2000();
+    	ch4.cleanUpText3();
+    	threadSleep_2000();
+    	ch4.cleanUpText2();
+    	ch4.addContent(1);
+    	ch4.addContent(2);
+    	ch4.addContent(3);
+    	ch4.cleanUpText1();
+    	threadSleep_2000();
+    	ch4.cleanUpText3();
+    	threadSleep_2000();
+    	ch4.cleanUpText2();
+    	threadSleep_2000();
+    }
+
+    @Then("^I enter the text on all input fields$")
+    public void i_enter_the_text_on_all_input_fields() throws Throwable {
+    	assertEquals(ch4.numOfCharactor1(), ch4.numOfCharactor2());
+    	assertEquals(ch4.numOfCharactor2(), ch4.numOfCharactor3());
+    }
+
+
+    @Then("^hover over text field at left bottom of the page$")
+    public void hover_over_text_field_at_left_bottom_of_the_page() throws Throwable {
+    	//hoverArena
+    	ch4 = new Ch4Page(driver);
+    	Actions act =new Actions(driver);
+    	act.moveToElement(ch4.getHoverArena()).perform();
+    	driver.switchTo().alert().accept();
+    	isTrue = true;
+    }
+
+
+    @And("^on the chapter 4 page, I saw two buttons$")
+    public void on_the_chapter_4_page_i_saw_two_buttons() throws Throwable {
+    	ch4 = new Ch4Page(driver);
+		assertNotNull(ch4.getThisTextFieldDoingNothing());
+		assertNotNull(ch4.getDropDownMenu2_doingNothing());
+    }
+
+    @And("^show a popup when hovering over the text field$")
+    public void show_a_popup_when_hovering_over_the_text_field() throws Throwable {
+        assertTrue(isTrue);
+    }
+
+    @But("^nothing would happen when I click on these two button$")
+    public void nothing_would_happen_when_i_click_on_these_two_button() throws Throwable {
+        ch4 = new Ch4Page(driver);
+        ch4.clickOnTextBtn();
+        ch4.clickOnDropdownBtn2();
+        assertTrue(ch4.isTextBtnClicked());
+        assertTrue(ch4.isDropdownBtn2Clicked());
+    }
 
 	/* Chapter 4 */
 	// =======================================================================
