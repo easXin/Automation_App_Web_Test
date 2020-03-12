@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -119,9 +120,9 @@ public class HomePage {
 	}
 
 	public void setTextInTextField() {
-		String tempArr[] = { "OH NO, HERE WE GO AGAIN", "GOOGLE IS MY BEST FRIEND", "TESTING ...",
-				"WHAT AM I DOING HERE", "I AM BORED", "STILL THINKING ABOUT TESTING",
-				"I HAVE NO IDEA ON TOP OF MY HEAD" };
+		String tempArr[] = { " OH NO, HERE WE GO AGAIN", " GOOGLE IS MY BEST FRIEND", "TESTING ...",
+				" WHAT AM I DOING HERE", " I AM BORED", " STILL THINKING ABOUT TESTING",
+				" I HAVE NO IDEA ON TOP OF MY HEAD" };
 		textField.sendKeys(tempArr[getRandomInteger(6, 0)]);
 	}
 	public static String getPageName() {
